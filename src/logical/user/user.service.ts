@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class UserService {
-  getHello(username: string): string {
-    if (username === 'id') {
+  findOne(username: string): string {
+    if (username === 'hmx') {
       return 'yes';
     }
     return 'no';
