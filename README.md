@@ -31,6 +31,11 @@
 ```bash
 $ npm install
 ```
+## eslint fix
+
+```bash
+$ npm run lint --fix
+```
 
 ## Running the app
 
