@@ -12,7 +12,7 @@ export class UserService {
   async findOne(username: string): Promise<any | undefined> {
     const sql = `
       SELECT
-      user_id id, real_name realName, role
+      user_id id, real_name realName, role, passwd, passwd_salt
       FROM
       admin_user
       WHERE
@@ -56,11 +56,9 @@ export class UserService {
     const hashPwd = encryptPassword(password, salt); // 加密密码
     const registerSQL = `
       INSERT INTO admin_user
-      (account_name, real_name, passwd, passwd_salt, mobile, user_status,
-      role, create_by)
+      (account_name, real_name, passwd, passwd_salt, mobile, user_status, role, create_by)
       VALUES
-      ('${accountName}', '${realName}', '${hashPwd}', '${salt}', '${mobile}',
-      1, 3, 0)`;
+      ('${accountName}', '${realName}', '${hashPwd}', '${salt}', '${mobile}', 1, 3, 0)`;
     try {
       await sequelize.query(registerSQL, { logging: false });
       return {
