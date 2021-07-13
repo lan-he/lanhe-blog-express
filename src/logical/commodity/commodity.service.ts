@@ -61,7 +61,6 @@ export class CommodityService {
   }
   /**
    * 创建商品
-   *
    * @param {*} body
    * @param {string} username
    * @returns {Promise<any>}
@@ -91,7 +90,6 @@ export class CommodityService {
   }
   /**
    * 修改商品
-   *
    * @param {*} body
    * @param {string} username
    * @returns
@@ -121,7 +119,6 @@ export class CommodityService {
   }
   /**
    * 删除商品
-   *
    * @param {*} body
    * @returns
    * @memberof CommodityService
