@@ -8,7 +8,7 @@ export class ArticleController {
   // @UseGuards(new RbacGuard(role.DEVELOPER))
   // @UseGuards(AuthGuard('jwt'))
   @Post('create')
-  async createCommodity(@Body() body: any) {
-    return await this.articleService.createCommodity(body);
+  async createArticle(@Body() body: any) {
+    return await this.articleService.createArticle(body);
   }
 }

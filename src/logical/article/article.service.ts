@@ -10,21 +10,44 @@ export class ArticleService {
    * @returns {Promise<any>}
    * @memberof CommodityService
    */
-  async createCommodity(body: any): Promise<any> {
+  async createArticle(body: any): Promise<any> {
     const {
+      articleId = 0,
       articleTitle = '文章名称',
       primarImg = '',
       articleDesc = '文章缩略展示',
-      articleContent = '文章内容',
-      createId = '创建人id',
+      articleContent = '789798789',
+      createId = 0,
       status = '0',
       articleLabel = 'js',
     } = body;
     const createCommoditySQL = `
       INSERT INTO article_info
-      (article_title, primary_img, article_desc, article_content, create_id, status, article_label)
+      (article_content, article_id, article_title, primary_img, article_desc, create_id, status, article_label, create_user, modify_user)
       VALUES
-      ('${articleTitle}', '${primarImg}', '${articleDesc}', ${articleContent}, ${createId}, '${status}', '${articleLabel}');
+      (${articleContent}, '${articleId}', '${articleTitle}', '${primarImg}', '${articleDesc}', ${createId}, '${status}', '${articleLabel}' , '0', '0');
+      `;
+    await sequelize.query(createCommoditySQL, { logging: false });
+    return {
+      code: 200,
+      msg: 'Success',
+    };
+  }
+  async createCommodity(body: any, username: string): Promise<any> {
+    const {
+      columnId = 0,
+      name,
+      description = '',
+      marketPrice = 0,
+      saleMoney = 0,
+    } = body;
+    const createCommoditySQL = `
+      INSERT INTO commodity
+      (ccolumn_id, commodity_name, commodity_desc, market_price, sale_money,
+      c_by)
+      VALUES
+      ('${columnId}', '${name}', '${description}', ${marketPrice},
+      ${saleMoney}, '${username}');
       `;
     await sequelize.query(createCommoditySQL, { logging: false });
     return {
