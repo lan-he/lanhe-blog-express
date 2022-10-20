@@ -3,8 +3,6 @@ var express = require('express')
 var path = require('path')
 var cookieParser = require('cookie-parser')
 var logger = require('morgan')
-var jwt = require('jsonwebtoken')
-
 var indexRouter = require('./routes/index')
 var userRouter = require('./routes/user')
 var expandRouter = require('./routes/expand')
@@ -23,14 +21,12 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 app.use((req, res, next) => {
     // token校验中间件
-    console.log(req.url)
     if (req.url.includes('login') || req.url.includes('logon')) {
         next()
         return
     }
     const token = req.headers['authorization']
     if (token && JWT.verify(token)) {
-        console.log('已经登陆')
         next()
     } else {
         res.send({
@@ -63,6 +59,7 @@ app.use(function (req, res, next) {
 
 // error handler
 app.use(function (err, req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*')
     // set locals, only providing error in development
     res.locals.message = err.message
     res.locals.error = req.app.get('env') === 'development' ? err : {}

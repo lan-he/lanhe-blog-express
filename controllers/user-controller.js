@@ -51,16 +51,19 @@ const userController = {
             const token = JWT.generate(
                 {
                     id: data._id.toString(),
+                    username,
                 },
                 '12h'
             )
             res.header('authorization', token)
             res.send({
-                code: token,
+                code: 1,
+                token,
             })
         } else {
             res.send({
                 code: 0,
+                msg: '登录失败',
             })
         }
     },
