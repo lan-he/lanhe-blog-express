@@ -30,7 +30,7 @@ router.post('/articles/add', async (req, res) => {
     if (!title || !content) {
         return res
             .status(400)
-            .json({ message: 'Title and content are required' })
+            .json({ message: 'Title and content are required6' })
     }
 
     try {
