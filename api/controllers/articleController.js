@@ -3,7 +3,7 @@ const Article = require('../models/article')
 // 获取所有文章
 exports.getArticles = async (req, res) => {
     try {
-        const articles = await Article.find()
+        const articles = await Article.find({}, 'title overview')
         res.json(articles)
     } catch (error) {
         res.status(500).json({ message: 'Error retrieving articles' })
@@ -33,5 +33,18 @@ exports.likeArticle = async (req, res) => {
         res.json(article)
     } catch (error) {
         res.status(500).json({ message: 'Error liking article' })
+    }
+}
+
+// 获取文章详情
+exports.getArticleById = async (req, res) => {
+    try {
+        const article = await Article.findById(req.params.id)
+        if (!article) {
+            return res.status(404).json({ message: 'Article not found' })
+        }
+        res.json(article)
+    } catch (error) {
+        res.status(500).json({ message: 'Error retrieving article details' })
     }
 }

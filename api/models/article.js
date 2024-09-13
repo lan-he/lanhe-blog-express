@@ -9,8 +9,10 @@ const commentSchema = new Schema({
 
 const articleSchema = new Schema({
     title: { type: String, required: true },
+    overview: { type: String, required: true }, // 新增概述字段
     content: { type: String, required: true },
     likes: { type: Number, default: 0 },
+    views: { type: Number, default: 0 },
     comments: [commentSchema],
     date: { type: Date, default: Date.now },
 })
