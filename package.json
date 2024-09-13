@@ -1,20 +1,16 @@
 {
-    "name": "espress-test",
-    "version": "0.0.0",
-    "private": true,
-    "scripts": {
-        "start": "node-dev ./bin/www",
-        "dev": "node-dev ./bin/www"
-    },
-    "dependencies": {
-        "cookie-parser": "~1.4.4",
-        "debug": "~2.6.9",
-        "ejs": "~2.6.1",
-        "express": "~4.16.1",
-        "http-errors": "~1.6.3",
-        "jsonwebtoken": "^8.5.1",
-        "mongoose": "^6.4.7",
-        "morgan": "~1.9.1",
-        "socket.io": "^4.5.3"
-    }
+  "name": "lanhe-blog-express",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "morgan": "~1.9.1"
+  }
 }
