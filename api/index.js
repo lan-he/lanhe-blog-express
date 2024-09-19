@@ -34,6 +34,8 @@ app.get('/', (req, res) => {
 app.use('/api/articles', articlesRoutes)
 app.use('/api/comments', commentsRoutes)
 app.use('/api/oauth', oauthRoutes)
+console.log(process.env.MONGODB_URI, 'process.env.MONGODB_URI')
+
 const uri = process.env.MONGODB_URI
 // 'mongodb+srv://15669147150g:89ta6e3b6ojHL02D@cluster0.2irj1.mongodb.net/blog?retryWrites=true&w=majority&appName=Cluster0'
 mongoose
