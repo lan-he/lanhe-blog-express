@@ -3,7 +3,7 @@ const Article = require('../models/article')
 // 获取所有文章
 exports.getArticles = async (req, res) => {
     try {
-        const articles = await Article.find({}, 'title overview')
+        const articles = await Article.find({}, 'title overview likes views')
         res.json(articles)
     } catch (error) {
         res.status(500).json({ message: 'Error retrieving articles' })
