@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
+const responseMiddleware = require('./middleware.js')
 // require('dotenv').config()
 const articlesRoutes = require('./routes/articles')
 const commentsRoutes = require('./routes/comments')
@@ -11,6 +12,7 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(responseMiddleware)
 app.get('/', (req, res) => {
     res.send(`
         <div
@@ -34,10 +36,7 @@ app.get('/', (req, res) => {
 app.use('/api/articles', articlesRoutes)
 app.use('/api/comments', commentsRoutes)
 app.use('/api/oauth', oauthRoutes)
-console.log(process.env.MONGODB_URI, 'process.env.MONGODB_URI')
-
 const uri = process.env.MONGODB_URI
-// 'mongodb+srv://15669147150g:89ta6e3b6ojHL02D@cluster0.2irj1.mongodb.net/blog?retryWrites=true&w=majority&appName=Cluster0'
 mongoose
     .connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('MongoDB connected'))
